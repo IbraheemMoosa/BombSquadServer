@@ -1,0 +1,2 @@
+# BombSquadServer
+no conflicts pls
