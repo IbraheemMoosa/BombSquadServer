@@ -1,0 +1,14 @@
+h1 {
+  font-size: 28pt;
+}
+body {
+  background-color: black;
+  color: #20C20E;
+  font-family: "Courier New";
+}
+.brand {
+  padding-right: 35px;
+}
+.navbarSupportedContent {
+  padding-right: 20px;
+}
