@@ -6,14 +6,20 @@ body {
   color: #000000;
   font-family: "Roboto";
 }
-.brand {
-  padding-right: 35px;
+#brand {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 .nav-item.active {
   padding-left: 20px;
   font-weight: bold;
   font-size: 18pt;
   color: black;
+}
+.dropdown-menu {
+  color: black;
+  background-color: white;
+  font-size: 18pt;
 }
 .nav-item.dropdown {
   padding-left: 20px;
