@@ -33,3 +33,11 @@ body {
 .searchButton {
   color: #000000;
 }
+#body {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 65%;
+  padding: 10px;
+  text-align: center;
+}
