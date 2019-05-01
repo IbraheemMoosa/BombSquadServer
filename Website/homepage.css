@@ -26,6 +26,9 @@ body {
 .searchButton {
   color: #000000;
 }
+#file-description {
+  padding-top: 25px;
+}
 #body {
   position: relative;
   display: block;
