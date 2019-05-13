@@ -8,7 +8,7 @@ var storage = multer.diskStorage({
     cb(null, 'uploads/')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, req.body.filename+path.extname(file.originalname));
   }
 })
 
@@ -31,8 +31,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/upload', upload.single("file"), function (req, res, next) {
-	console.log(req.file);
-	console.log(req.filename);
+	console.log(req.body.filename);
 	res.redirect("/");
 })
 
