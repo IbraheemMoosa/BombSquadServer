@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/upload', upload.single("file"), function (req, res, next) {
-	console.log(req.body.filename);
+	console.log("Uploading: " + req.body.filename+path.extname(req.file.originalname));
 	res.redirect("/");
 })
 
