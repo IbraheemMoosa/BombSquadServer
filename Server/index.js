@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/upload', upload.single(), function (req, res, next) {
-	res.end();
+	res.redirect("/");
 })
 
 app.listen(8080);
