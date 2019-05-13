@@ -1,9 +1,18 @@
 var express = require('express');
 var path = require('path');
 var exphbs  = require('express-handlebars');
+var multer = require('multer');
 
-var multer  = require('multer')
-var upload = multer({dest: 'uploads/'});
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+var upload = multer({dest: 'uploads/', storage: storage});
 
 var app = express();
 
@@ -21,7 +30,8 @@ app.get('/', function (req, res) {
     res.render('homepage');
 });
 
-app.post('/upload', upload.single(), function (req, res, next) {
+app.post('/upload', upload.single("file"), function (req, res, next) {
+	console.log(req.file);
 	res.redirect("/");
 })
 
