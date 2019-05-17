@@ -10,7 +10,8 @@
  */
 struct node
 {
-    int key_value;
+    int priority;
+    std::string name;
     struct node *p_left;
     struct node *p_right;
 };
