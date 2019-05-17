@@ -38,7 +38,11 @@
 </div>
 </nav>
 <div id="body">
-
+  <div class="list-group">
+    {{#each fileNames}}
+    <a href="/file/{{this}}" class="list-group-item list-group-item-action">{{this}}</a>
+    {{/each}}
+  </div>
 </div>
 <footer>
   <div id="footer" style="position: absolute; bottom: 0; width: 100%">
