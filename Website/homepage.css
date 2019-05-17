@@ -38,7 +38,7 @@ body {
   text-align: center;
 }
 #title-text {
-  font-size: 50px;
+  font-size: 50pt;
   font-weight: bold;
   margin-top: 18px;
 }
@@ -74,4 +74,36 @@ body {
 #footer-text {
   padding: 12px 0;
   margin: 0 194px;
+}
+#company-text {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  font-size: 25px !important;
+}
+#file-name {
+  text-align: center;
+}
+#file-name-lable {
+  font-size: 25pt;
+  padding-top: 70px;
+  padding-bottom: 15px;
+}
+#adding-a-file-name {
+  font-size: 25pt;
+  padding-top: 70px;
+  padding-bottom: 15px;
+}
+#adding-a-file {
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+#file-description-lable {
+  font-size: 25pt;
+  padding-top: 70px;
+  padding-bottom: 15px;
+}
+#file-description-box {
+  padding-bottom: 60px;
 }

@@ -105,6 +105,7 @@ void BST::insert(node *tree, node *newnode)
     }
     else  // it must be to the right
     {
+        cout << "HERE"<<endl;
         //if (is there already a child on right?)
         if(current->p_right != nullptr)
         {
@@ -115,6 +116,7 @@ void BST::insert(node *tree, node *newnode)
         {
             // otherwise the new node goes here as a leaf (ie no children)
             current->p_right = newnode;
+            cout << "DONE"<<endl;
             return;
         }
     }
