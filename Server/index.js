@@ -35,11 +35,15 @@ app.get('/', function (req, res) {
 
 app.get('/file/:filename', function (req, res) {
 	var filename = req.params.filename;
-	var imgregex = /\.(jpg|jpeg|png|gif)$/i;
-	res.render('page template', {
-		filename: filename, 
-		isImage: imgregex.test(filename)
-	});
+	if(fs.existsSync("./uploads/" + filename)) {
+		var imgregex = /\.(jpg|jpeg|png|gif)$/i;
+		res.render('page template', {
+			filename: filename, 
+			isImage: imgregex.test(filename)
+		});
+	} else {
+		res.redirect('/files')
+	}
 });
 
 app.get('/download/:filename', function (req, res) {
