@@ -29,28 +29,27 @@ void BST::find(int item_key, node **prnt, node **loc)
         *prnt = nullptr;
         return;
     }
-    if (item_key == root->key_value)
+    if (item_key == root->priority)
     {
         *loc = root;
         *prnt = nullptr;
         return;
     }
-    cout << "HERE"<<endl;
-    if (item_key < root->key_value)
+    if (item_key < root->priority)
         ptr = root->p_left;
     else
         ptr = root->p_right;
     ptrsave = root;
     while (ptr != nullptr)
     {
-        if (item_key == ptr->key_value)
+        if (item_key == ptr->priority)
         {
             *loc = ptr;
             *prnt = ptrsave;
             return;
         }
         ptrsave = ptr;
-        if (item_key < ptr->key_value)
+        if (item_key < ptr->priority)
             ptr = ptr->p_left;
 	else
 	    ptr = ptr->p_right;
@@ -81,7 +80,7 @@ void BST::insert(node *tree, node *newnode)
     node* parent = temp;
     node* location = temp;
     //node *parent, *location;
-    find(newnode->key_value, &parent, &location);
+    find(newnode->priority, &parent, &location);
     if(location != nullptr)
     {
         //Just return
@@ -89,7 +88,7 @@ void BST::insert(node *tree, node *newnode)
     }
     //if (the new node is less than the current node)
     node* current = tree;
-    if(newnode->key_value < current->key_value)
+    if(newnode->priority < current->priority)
     {
         //if (see if something is already a child on the left)
         if(current->p_left != nullptr)
@@ -175,7 +174,7 @@ void BST::case_0(node *prnt, node *loc )
     else
     {
       // otherwise simply remove node
-      if(loc->key_value > prnt->key_value)
+      if(loc->priority > prnt->priority)
         prnt->p_right = nullptr;
       else
         prnt->p_left = nullptr;
@@ -210,7 +209,7 @@ void BST::case_1(node *prnt, node *loc)
     }
     else{
       //if (the node is left child of parent)
-      if(child->key_value < prnt->key_value)
+      if(child->priority < prnt->priority)
         //promote the left
         prnt->p_left = child;
       //else // the node is right of parent
@@ -247,13 +246,13 @@ void BST::case_2(node *prnt, node *loc)
     if(loc == root)
     {
         //then update root
-        root->key_value = temp->key_value;
+        root->priority = temp->priority;
     }
     else
     {
         // Insert the successor node where the target node we
         //   are removing is located
-        loc->key_value = temp->key_value;
+        loc->priority = temp->priority;
     }
     // then update the successor child pointers to reflect the old
     //     target's child pointers.
@@ -279,7 +278,7 @@ void BST::display(node *ptr, int level)
             for (i = 0;i < level;i++)
                 cout<<"       ";
 	      }
-        cout<<ptr->key_value;
+        cout<<ptr->name;
         display(ptr->p_left, level+1);
     }
 }
