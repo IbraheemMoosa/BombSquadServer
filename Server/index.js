@@ -43,6 +43,10 @@ app.get('/download/:filename', function (req, res) {
 	res.download(__dirname + "/uploads/" + req.params.filename);
 });
 
+app.get('/files', function(req, res) {
+	res.render('files');
+});
+
 app.post('/upload', upload.single("file"), function (req, res, next) {
 	var fileName = req.body.filename+path.extname(req.file.originalname);
 	console.log("Uploading: " + fileName);

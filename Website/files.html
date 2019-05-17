@@ -21,10 +21,10 @@
     <li class="nav-item">
       <a class="nav-link" href="/homepage.html">Home<span class="sr-only">(current)</span></a>
     </li>
-    <li class="nav-item active">
+    <li class="nav-item">
       <a class="nav-link" href="/new file.html">Add A File</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item active">
       <a class="nav-link" href="/files">View Files</a>
     </li>
     <!-- <li class="nav-item">
@@ -38,27 +38,10 @@
 </div>
 </nav>
 <div id="body">
-    <p id="title-text">
-      Submit a New File
-    </p>
-<form class="form-group" action="/upload" method="post" enctype="multipart/form-data">
-  <div class="form-group">
-    <label for="file-name" id="file-name-lable">Give Your File a Name</label>
-    <textarea class="form-control" id="file-name" rows="1" name="filename"></textarea>
-  </div>
-    <div class="form-group"  id="adding-a-file">
-      <label for="adding-a-file" id="adding-a-file-name">Add Your File</label>
-      <input type="file" class="form-control-file" name="file">
-    </div>
-<!--     <div class="form-group" id="file-description-box">
-      <label for="file-description" id="file-description-lable">Give Your File a Description</label>
-      <textarea class="form-control" id="file-description" rows="3"></textarea>
-    </div> -->
-     <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
 </div>
 <footer>
-  <div id="footer">
+  <div id="footer" style="position: absolute; bottom: 0; width: 100%">
   <p id="footer-text">
     LASA Computer Science by Rainer Mueller and James Shockey, and by assossiation all Bomb Squad assets, <br>ideas, and images, is licensed under
 a <a id="creative-commons" href="https://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
@@ -66,14 +49,4 @@ a <a id="creative-commons" href="https://creativecommons.org/licenses/by-nc-sa/3
 </div>
 </footer>
 </body>
-<script>
-$(document). ready(function(){
-  $('input[type="file"]').change(function(e){
-    var fileName = e.target.files[0].name;
-    console.log(e.target.files)
-    if ($("#file-name").text().length == 0)
-      $("#file-name").text(fileName.split(".")[0]);
-  });
-});
-</script>
 </html>
