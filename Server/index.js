@@ -30,9 +30,23 @@ app.get('/', function (req, res) {
     res.render('homepage');
 });
 
+app.get('/file/:filename', function (req, res) {
+	var filename = req.params.filename;
+	var imgregex = /\.(jpg|jpeg|png|gif)$/i;
+    res.render('page template', {
+    	filename: filename, 
+    	isImage: imgregex.test(filename)
+    });
+});
+
+app.get('/download/:filename', function (req, res) {
+	res.download(__dirname + "/uploads/" + req.params.filename);
+});
+
 app.post('/upload', upload.single("file"), function (req, res, next) {
-	console.log("Uploading: " + req.body.filename+path.extname(req.file.originalname));
-	res.redirect("/");
+	var fileName = req.body.filename+path.extname(req.file.originalname);
+	console.log("Uploading: " + fileName);
+	res.redirect("/file/" + fileName);
 })
 
 app.listen(8080);
