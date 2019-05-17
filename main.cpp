@@ -8,7 +8,7 @@
 
 using namespace std;
 
-//Simple hashing method to convert a string to a number
+//Simple hashing method to convert a string to a unique number
 int getID(string name){
   int id = 0;
   for(char a: name){
