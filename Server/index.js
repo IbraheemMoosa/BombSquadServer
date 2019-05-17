@@ -47,7 +47,12 @@ app.get('/download/:filename', function (req, res) {
 app.get('/files', function(req, res) {
 	var fileNames = fs.readdirSync(__dirname + "/uploads/");
 	fileNames.splice(fileNames.indexOf('.gitignore'), 1);
-	res.render('files', {fileNames: fileNames});
+	if (!req.query.q) {
+		res.render('files', {fileNames: fileNames});
+	} else {
+		
+		res.render('files', {fileNames: fileNames});
+	}
 });
 
 app.post('/upload', upload.single("file"), function (req, res, next) {
