@@ -8,15 +8,6 @@
 
 using namespace std;
 
-//Simple hashing method to convert a string to a unique number
-int getID(string name){
-  int id = 0;
-  for(char a: name){
-    id+=(int)a;
-  }
-  return id;
-}
-
 /*
  * Main Contains Menu
  */
@@ -28,6 +19,7 @@ int main()
 
   string arr[256];
   string rem[256];
+  //Some random test data, use as you like
 
 	// Get list of keys to insert
 	int i = 0;
@@ -35,7 +27,7 @@ int main()
 	do
 	{
 	  cin >> arr[i++];
-	}	while (arr[i-1] != "NULL");
+  }	while (arr[i-1] != "NULL");
 	int arrlen = i-1;
 
 	// Get list of keys to remove
@@ -44,26 +36,34 @@ int main()
 	do
 	{
 	  cin >> rem[i];
-	}	while (rem[i++] != "NULL" );
+  }	while (rem[i++] != "NULL" );
 	int remlen = i-1;
 
+  cout << "Search\n";
+  string search;
+  cin >> search;
 
-	cout << "Array size: " << arrlen << endl;
+	// cout << "Array size: " << arrlen << endl;
 
 			for (int i=0; i<arrlen; i++)
 			{
 				temp = new node;
-       				temp->name = arr[i];
-				temp->priority = getID(arr[i]);
+				temp->name = arr[i];
 				bst.insert(bst.root, temp);
+        // cout << "STARTING "<<arrlen<< endl;
 			}
 			//bst.display(bst.root,1);
-     			for (int i=0; i<remlen; i++)
+      for (int i=0; i<remlen; i++)
 			{
-				bst.remove(getID(rem[i]));
+				bst.remove(rem[i]);
 			}
+
+      cout << "Found: ";
+      bst.printSearch(bst.root, search);
+      cout << endl;
       cout<<"Display BST:"<<endl;
       bst.display(bst.root,1);
+      cout << endl;
 
       cout<<endl;
 

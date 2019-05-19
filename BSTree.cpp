@@ -20,7 +20,7 @@ using namespace std;
  */
 
 
-void BST::find(int item_key, node **prnt, node **loc)
+void BST::find(string item_name, node **prnt, node **loc)
 {
     node *ptr, *ptrsave;
     if (root == nullptr)
@@ -29,27 +29,28 @@ void BST::find(int item_key, node **prnt, node **loc)
         *prnt = nullptr;
         return;
     }
-    if (item_key == root->priority)
+    if (item_name == root->name)
     {
         *loc = root;
         *prnt = nullptr;
         return;
     }
-    if (item_key < root->priority)
+    // cout << "HERE"<<endl;
+    if (item_name.compare(root->name) < 0)
         ptr = root->p_left;
     else
         ptr = root->p_right;
     ptrsave = root;
     while (ptr != nullptr)
     {
-        if (item_key == ptr->priority)
+        if (item_name == ptr->name)
         {
             *loc = ptr;
             *prnt = ptrsave;
             return;
         }
         ptrsave = ptr;
-        if (item_key < ptr->priority)
+        if (item_name.compare(ptr->name) < 0)
             ptr = ptr->p_left;
 	else
 	    ptr = ptr->p_right;
@@ -80,7 +81,7 @@ void BST::insert(node *tree, node *newnode)
     node* parent = temp;
     node* location = temp;
     //node *parent, *location;
-    find(newnode->priority, &parent, &location);
+    find(newnode->name, &parent, &location);
     if(location != nullptr)
     {
         //Just return
@@ -88,7 +89,7 @@ void BST::insert(node *tree, node *newnode)
     }
     //if (the new node is less than the current node)
     node* current = tree;
-    if(newnode->priority < current->priority)
+    if(newnode->name.compare(current->name) < 0)
     {
         //if (see if something is already a child on the left)
         if(current->p_left != nullptr)
@@ -105,7 +106,7 @@ void BST::insert(node *tree, node *newnode)
     }
     else  // it must be to the right
     {
-        cout << "HERE"<<endl;
+        // cout << "HERE"<<endl;
         //if (is there already a child on right?)
         if(current->p_right != nullptr)
         {
@@ -116,7 +117,7 @@ void BST::insert(node *tree, node *newnode)
         {
             // otherwise the new node goes here as a leaf (ie no children)
             current->p_right = newnode;
-            cout << "DONE"<<endl;
+            // cout << "DONE"<<endl;
             return;
         }
     }
@@ -126,7 +127,7 @@ void BST::insert(node *tree, node *newnode)
 /*
  * Delete Element from the tree
  */
-void BST::remove(int item)
+void BST::remove(string item)
 {
     node *parent, *location;
     if (root == NULL)
@@ -174,7 +175,7 @@ void BST::case_0(node *prnt, node *loc )
     else
     {
       // otherwise simply remove node
-      if(loc->priority > prnt->priority)
+      if(loc->name.compare(prnt->name) > 0)
         prnt->p_right = nullptr;
       else
         prnt->p_left = nullptr;
@@ -209,7 +210,7 @@ void BST::case_1(node *prnt, node *loc)
     }
     else{
       //if (the node is left child of parent)
-      if(child->priority < prnt->priority)
+      if(child->name.compare(prnt->name) < 0)
         //promote the left
         prnt->p_left = child;
       //else // the node is right of parent
@@ -246,13 +247,13 @@ void BST::case_2(node *prnt, node *loc)
     if(loc == root)
     {
         //then update root
-        root->priority = temp->priority;
+        root->name = temp->name;
     }
     else
     {
         // Insert the successor node where the target node we
         //   are removing is located
-        loc->priority = temp->priority;
+        loc->name = temp->name;
     }
     // then update the successor child pointers to reflect the old
     //     target's child pointers.
@@ -281,4 +282,20 @@ void BST::display(node *ptr, int level)
         cout<<ptr->name;
         display(ptr->p_left, level+1);
     }
+}
+
+void BST::printSearch(node* n, string search)
+{
+    if (n == NULL)
+        return;
+
+    /* first recur on left child */
+    printSearch(n->p_left, search);
+
+    /* then print the data of node */
+    if (n->name.substr(0, search.length()) == search)
+      cout << n->name << " ";
+
+    /* now recur on right child */
+    printSearch(n->p_right, search);
 }
