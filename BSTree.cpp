@@ -289,13 +289,20 @@ void BST::printSearch(node* n, string search)
     if (n == NULL)
         return;
 
+    //check if file exists
+    node* temp = new node;
+    node* parent = temp;
+    node* location = temp;
+    find(search, &parent, &location);
+    if (location == nullptr){
+      cout << "The file " << search << " does not exist" <<endl;
+      return;
+    }
     /* first recur on left child */
     printSearch(n->p_left, search);
-
-    /* then print the data of node */
+    /* then print the data of node */    
     if (n->name.substr(0, search.length()) == search)
-      cout << n->name << " ";
-
+        cout << n->name << " ";
     /* now recur on right child */
     printSearch(n->p_right, search);
 }
