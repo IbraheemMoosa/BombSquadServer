@@ -6,6 +6,10 @@ var fs = require('fs');
 var findInFiles = require('find-in-files');
 const escapeStringRegexp = require('escape-string-regexp');
 
+if (!fs.existsSync('./uploads')){
+    fs.mkdirSync('./uploads');
+}
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
 	cb(null, 'uploads/')
@@ -38,7 +42,7 @@ app.get('/file/:filename', function (req, res) {
 	if(fs.existsSync("./uploads/" + filename)) {
 		var imgregex = /\.(jpg|jpeg|png|gif)$/i;
 		res.render('page template', {
-			filename: filename, 
+			filename: filename,
 			isImage: imgregex.test(filename)
 		});
 	} else {
@@ -53,7 +57,8 @@ app.get('/download/:filename', function (req, res) {
 app.get('/files', function(req, res) {
 	var fileNames = fs.readdirSync(__dirname + "/uploads/");
 	if (!req.query.q) {
-		fileNames.splice(fileNames.indexOf('.gitignore'), 1);
+        if (fileNames.indexOf('.gitignore') != -1)
+		    fileNames.splice(fileNames.indexOf('.gitignore'), 1);
 		res.render('files', {fileNames: fileNames});
 	} else {
 		var search = escapeStringRegexp(req.query.q);
@@ -77,3 +82,4 @@ app.post('/upload', upload.single("file"), function (req, res, next) {
 })
 
 app.listen(8080);
+console.log("Server started");
